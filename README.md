@@ -2,6 +2,8 @@
 
 I coded a solution to solve the Wordle puzzle because I thought it would be a fun problem to solve. 
 
+Future plans to make a user-friendly web application to take in user input.
+
 <h3>How to use it: </h3>
 
 Currently works only on command line. 
