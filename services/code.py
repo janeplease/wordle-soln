@@ -4,6 +4,10 @@
 # #=grey
 import random
 
+from take_input import input1
+
+
+
 
 
 def read_words():
@@ -96,7 +100,7 @@ def make_new_word_list(old_doc_name, old_word_list, discarded, confirmed, yellow
 def one_iteration(potential_words, doc_name, discarded, confirmed, yellow):
 	guessed_word = select_random_word(potential_words)
 	print(guessed_word)
-	interpreted_word = input()
+	interpreted_word = input1()
 
 	results = interpret(interpreted_word, guessed_word, discarded, confirmed, yellow)
 	discarded = results[0]
@@ -109,7 +113,7 @@ def one_iteration(potential_words, doc_name, discarded, confirmed, yellow):
 	potential_words = results2[1]
 
 	print('Enter 0 to print new list, otherwise 1')
-	choice = input()
+	choice = input1()
 	if choice == '0':
 		print(potential_words)
 
