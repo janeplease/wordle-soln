@@ -2,6 +2,9 @@
 # !=yellow
 # @=green
 # #=grey
+
+
+#TODO: 
 import random
 
 from take_input import input1
@@ -102,6 +105,9 @@ def one_iteration(potential_words, doc_name, discarded, confirmed, yellow):
 	print(guessed_word)
 	interpreted_word = input1()
 
+	if interpreted_word=="1":
+		return 1
+
 	results = interpret(interpreted_word, guessed_word, discarded, confirmed, yellow)
 	discarded = results[0]
 	confirmed = results[1]
@@ -112,10 +118,10 @@ def one_iteration(potential_words, doc_name, discarded, confirmed, yellow):
 	doc_name = results2[0]
 	potential_words = results2[1]
 
-	print('Enter 0 to print new list, otherwise 1')
-	choice = input1()
-	if choice == '0':
-		print(potential_words)
+	# print('Enter 0 to print new list, otherwise 1')
+	# choice = input1()
+	# if choice == '0':
+	# 	print(potential_words)
 
 	return [potential_words, doc_name, discarded, confirmed, yellow]
 
@@ -133,33 +139,12 @@ doc_name = 'potential_words_1'
 
 
 
-# guessed_word = select_random_word(potential_words)
-# print(guessed_word)
-# interpreted_word = input()
-
-# results = interpret(interpreted_word, guessed_word, discarded, confirmed, yellow)
-# discarded = results[0]
-# confirmed = results[1]
-# yellow = results[2]
-
-# print(discarded,confirmed,yellow)
-# results2 = make_new_word_list(doc_name, potential_words, discarded, confirmed, yellow)
-# doc_name = results2[0]
-# potential_words = results2[1]
-
-# print('Enter 0 to print new list, otherwise 1')
-# choice = input()
-# if choice == '0':
-# 	print(potential_words)
-# print(potential_words)
-
-
-
-
-
 
 for i in range(6):
 	results3 = one_iteration(potential_words, doc_name, discarded, confirmed, yellow)
+	if results3 == 1:
+		print("Word found")
+		break
 	potential_words = results3[0]
 	doc_name = results3[1]
 	discarded = results3[2]
@@ -167,30 +152,3 @@ for i in range(6):
 	yellow = results3[4]
 
 
-##############################################################################
-
-# potential_words = read_words()
-
-# print(select_random_word(potential_words))
-
-# discarded = []
-# confirmed = {}
-# yellow = {}
-# doc_name = 'potential_words_1'
-
-
-# #correct_word = 'abbey'
-
-# interpreted_word = '!###!'
-# guessed_word = 'yzzza'
-
-# results = interpret(interpreted_word, guessed_word,discarded,confirmed,yellow)
-
-# discarded = results[0]
-# confirmed = results[1]
-# yellow = results[2]
-
-# print(discarded,confirmed,yellow)
-# results2 = make_new_word_list(doc_name, potential_words, discarded, confirmed, yellow)
-# doc_name = results[2]
-# potential_words = results[1]
