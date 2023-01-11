@@ -7,7 +7,7 @@
 #TODO: 
 import random
 
-from take_input import input1
+from input_to_service import input1
 
 
 
@@ -89,41 +89,37 @@ def make_new_word_list(old_doc_name, old_word_list, discarded, confirmed, yellow
 	#print(old_word_list)
 
 	new_doc_name = old_doc_name[:-1] + str(int(old_doc_name[-1])+1)
-	print(new_doc_name)
+	# print(new_doc_name)
 
 	with open(new_doc_name+'.txt','w') as f:
 		for word in new_word_list:
 			f.write(word)
 			f.write('\n')
 		f.close()
-	print(new_word_list)
+	# print(new_word_list)
 	return [new_doc_name,new_word_list]
 
 
-def one_iteration(potential_words, doc_name, discarded, confirmed, yellow):
-	guessed_word = select_random_word(potential_words)
-	print(guessed_word)
+def one_iteration(potential_words, suggested_word, doc_name, discarded, confirmed, yellow):
+	
 	interpreted_word = input1()
 
 	if interpreted_word=="1":
 		return 1
 
-	results = interpret(interpreted_word, guessed_word, discarded, confirmed, yellow)
+	results = interpret(interpreted_word, suggested_word, discarded, confirmed, yellow)
 	discarded = results[0]
 	confirmed = results[1]
 	yellow = results[2]
 
-	print(discarded,confirmed,yellow)
+	# print(discarded,confirmed,yellow)
 	results2 = make_new_word_list(doc_name, potential_words, discarded, confirmed, yellow)
 	doc_name = results2[0]
 	potential_words = results2[1]
 
-	# print('Enter 0 to print new list, otherwise 1')
-	# choice = input1()
-	# if choice == '0':
-	# 	print(potential_words)
 
-	return [potential_words, doc_name, discarded, confirmed, yellow]
+
+	return [potential_words, doc_name, discarded, confirmed, yellow, suggested_word]
 
 
 
@@ -131,24 +127,43 @@ def one_iteration(potential_words, doc_name, discarded, confirmed, yellow):
 
 ############################################################################
 ####   main   ###########
-potential_words = read_words()
-discarded = []
-confirmed = {}
-yellow = {}
-doc_name = 'potential_words_1'
+# potential_words = read_words()
+# discarded = []
+# confirmed = {}
+# yellow = {}
+# doc_name = 'potential_words_1'
 
 
 
 
-for i in range(6):
-	results3 = one_iteration(potential_words, doc_name, discarded, confirmed, yellow)
+# for i in range(6):
+# 	results3 = one_iteration(potential_words, doc_name, discarded, confirmed, yellow)
+# 	if results3 == 1:
+# 		print("Word found")
+# 		break
+# 	potential_words = results3[0]
+# 	doc_name = results3[1]
+# 	discarded = results3[2]
+# 	confirmed = results3[3]
+# 	yellow = results3[4]
+
+
+def get_random_word(potential_words):
+	return select_random_word(potential_words)
+
+
+def get_word(potential_words, suggested_word, doc_name, discarded, confirmed, yellow):
+	results3 = one_iteration(potential_words, suggested_word, doc_name, discarded, confirmed, yellow)
 	if results3 == 1:
 		print("Word found")
-		break
+		return ["word found"]
 	potential_words = results3[0]
 	doc_name = results3[1]
 	discarded = results3[2]
 	confirmed = results3[3]
 	yellow = results3[4]
+	guessed_word = results3[5]
+	return [guessed_word, potential_words, doc_name, discarded, confirmed, yellow]
+
 
 
