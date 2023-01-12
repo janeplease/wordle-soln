@@ -5,9 +5,9 @@
 
 
 #TODO: 
+import os
 import random
-
-from input_to_service import input1
+# from output_from_sevice import set_result_from_game
 
 
 
@@ -15,7 +15,7 @@ from input_to_service import input1
 
 def read_words():
 	five_letter_words = []
-	with open("popular_five_letter_words.txt","r") as f:
+	with open("be/services/popular_five_letter_words.txt","r") as f:
 		words = f.readlines()
 		f.close()
 	for word in words:
@@ -100,9 +100,7 @@ def make_new_word_list(old_doc_name, old_word_list, discarded, confirmed, yellow
 	return [new_doc_name,new_word_list]
 
 
-def one_iteration(potential_words, suggested_word, doc_name, discarded, confirmed, yellow):
-	
-	interpreted_word = input1()
+def one_iteration(interpreted_word, potential_words, suggested_word, doc_name, discarded, confirmed, yellow):
 
 	if interpreted_word=="1":
 		return 1
@@ -146,6 +144,9 @@ def one_iteration(potential_words, suggested_word, doc_name, discarded, confirme
 # 	discarded = results3[2]
 # 	confirmed = results3[3]
 # 	yellow = results3[4]
+
+# def get_results():
+# 	return set_result_from_game()
 
 
 def get_random_word(potential_words):
