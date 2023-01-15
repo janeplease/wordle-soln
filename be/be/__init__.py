@@ -1,11 +1,11 @@
 from flask import Flask
-app = Flask(__name__)
+from flask_cors import CORS
 
-@app.route("/")
-def home():
-    return "Hello, Flask!"
+app = Flask(__name__)
+CORS(app)
+
 
 if __name__ == '__main__':
-   app.run()
+   app.run(debug=True)
 
 from . import controller
