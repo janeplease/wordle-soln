@@ -30,6 +30,12 @@ def get_coded_word1():
         return 'Content-Type not supported!'
 
 
+@app.route("/closesession", methods = ['GET'])
+def close_session():
+    outputFromService.close_session(outputFromService)
+    return "Session closed"
+
+
 
 # @app.route("/postcodedword/<name>", methods = ['POST'])
 # def get_coded_word():
